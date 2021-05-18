@@ -4,11 +4,12 @@ import {HeaderButtons, Item} from "react-navigation-header-buttons";
 import CustomHeaderButton from "../components/CustomHeaderButton";
 import ProductItem from "../components/ProductItem";
 import ProductList from "../components/ProductList";
-import {PRODUCTS} from "../data/dummy-data";
+import { useSelector } from "react-redux";
+
 
 const ShopHomeScreen = props =>{
-
-    return <ProductList listData={PRODUCTS} navigation={props.navigation} />
+    const products = useSelector(state => state.products.availableProducts);
+    return <ProductList listData={products} navigation={props.navigation} />
 
 }
 
