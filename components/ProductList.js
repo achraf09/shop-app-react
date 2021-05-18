@@ -1,10 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View,  FlatList, StyleSheet} from "react-native";
 import ProductItem from "./ProductItem";
 import {PRODUCTS} from "../data/dummy-data";
 
 
 const ProductList = props => {
+    const [cart,setCart] = useState([]);
+    const addItemToCart = item =>{
+        setCart(prevState => [...prevState,item]);
+    }
     const renderGridItem = itemData => {
         return <ProductItem
             imageSource={itemData.item.imageUrl}
@@ -15,7 +19,8 @@ const ProductList = props => {
                         productId: itemData.item.id
                     }
                 });
-            }}/>
+            }}
+        />
     };
 
     return (

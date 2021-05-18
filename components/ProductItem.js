@@ -16,9 +16,7 @@ const ProductItem = props => {
         <View style={styles.listItemBottom}>
             <Button title="Details" onPress={props.onSelectProduct}/>
             <Text>{props.price}€</Text>
-            <Button title="Cart" onPress={()=>{
-                console.log('Insert Item into Cart');
-            }}/>
+            <Button title="Cart" onPress={props.onCartAdd}/>
         </View>
     </View>
 };

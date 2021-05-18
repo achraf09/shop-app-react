@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: 300,
         width:'98%',
-        borderColor: '#8b8787',
+        borderColor: '#9f9f9f',
         borderWidth: 1,
         borderRadius:10,
         overflow:'hidden',
