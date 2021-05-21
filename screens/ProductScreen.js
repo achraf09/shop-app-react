@@ -5,10 +5,11 @@ import CustomHeaderButton from "../components/CustomHeaderButton";
 import ProductList from "../components/ProductList";
 import {PRODUCTS} from "../data/dummy-data";
 import ProductEditableList from "../components/ProductEditableList";
+import {useSelector} from "react-redux";
 
 const ProductScreen = props =>{
-
-    return <ProductEditableList listData={PRODUCTS} navigation={props.navigation} />
+    const products = useSelector(state => state.products.availableProducts);
+    return <ProductEditableList listData={products} navigation={props.navigation} />
 }
 
 const styles = StyleSheet.create({

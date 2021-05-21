@@ -1,10 +1,12 @@
 import React from 'react';
 import {View, Button, StyleSheet, Image, Text} from "react-native";
 import {PRODUCTS} from "../data/dummy-data";
+import {useSelector} from "react-redux";
 
 const ProductDetailScreen = props => {
     const productId = props.navigation.getParam('productId');
-    const productItem = PRODUCTS.find(product => product.id === productId);
+    const productItem = useSelector(state => state.products.availableProducts.find(product => product.id === productId));
+    console.log(productItem);
     return <View style={styles.screen}>
         <Image style={styles.productImage} source={{uri:productItem.imageUrl}} />
         <Text>{productItem.price}€</Text>
@@ -26,10 +28,9 @@ const styles = StyleSheet.create({
 });
 
 ProductDetailScreen.navigationOptions = navData =>{
-    const productId = navData.navigation.getParam('productId');
-    const productItem = PRODUCTS.find(product => product.id === productId);
+    const productTitle = navData.navigation.getParam('productTitle');
     return{
-        headerTitle: productItem.title
+        headerTitle: productTitle
     }
 }
 

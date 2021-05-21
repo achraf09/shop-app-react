@@ -1,14 +1,13 @@
 import React, {useState} from 'react';
 import {View,  FlatList, StyleSheet} from "react-native";
 import ProductItem from "./ProductItem";
-import {PRODUCTS} from "../data/dummy-data";
 
 
 const ProductList = props => {
-    const [cart,setCart] = useState([]);
-    const addItemToCart = item =>{
-        setCart(prevState => [...prevState,item]);
-    }
+    // const [cart,setCart] = useState([]);
+    // const addItemToCart = item =>{
+    //     setCart(prevState => [...prevState,item]);
+    // }
     const renderGridItem = itemData => {
         return <ProductItem
             imageSource={itemData.item.imageUrl}
@@ -16,7 +15,8 @@ const ProductList = props => {
             onSelectProduct={()=>{
                 props.navigation.navigate({
                     routeName: 'ProductDetail', params:{
-                        productId: itemData.item.id
+                        productId: itemData.item.id,
+                        productTitle: itemData.item.title
                     }
                 });
             }}
