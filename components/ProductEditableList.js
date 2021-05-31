@@ -1,9 +1,21 @@
 import React from 'react';
-import {View,  FlatList, StyleSheet} from "react-native";
+import {View, FlatList, StyleSheet, Alert} from "react-native";
 import ProductEditableItem from "./ProductEditableItem";
+import {useDispatch} from "react-redux";
 
+import * as actionsProduct from '../store/actions/products';
 
 const ProductEditableList = props => {
+    const deleteHandler = (id)=>{
+        Alert.alert('Are you sure?','Do you really want to delete this item?',[
+            {text:'No', style:'default'},
+            {text:'Yes', style:'destructive', onPress: ()=> {
+                        dispatch(actionsProduct.deleteProduct(id));
+
+                }}
+        ])
+    }
+    const dispatch = useDispatch();
     const renderGridItem = itemData => {
         return <ProductEditableItem
             imageSource={itemData.item.imageUrl}
@@ -15,10 +27,7 @@ const ProductEditableList = props => {
                     }
                 });
             }}
-            onDeleteProduct={()=>{
-                console.log('Clicked on delete item');
-            }
-            }
+            onDeleteProduct={deleteHandler.bind(this, itemData.item.id)}
         />
     };
 

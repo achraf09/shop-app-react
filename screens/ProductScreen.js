@@ -8,7 +8,7 @@ import ProductEditableList from "../components/ProductEditableList";
 import {useSelector} from "react-redux";
 
 const ProductScreen = props =>{
-    const products = useSelector(state => state.products.availableProducts);
+    const products = useSelector(state => state.products.userProducts);
     return <ProductEditableList listData={products} navigation={props.navigation} />
 }
 

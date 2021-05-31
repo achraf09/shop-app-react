@@ -12,13 +12,15 @@ import OrdersScreen from "../screens/OrdersScreen";
 import ManageProductsScreen from "../screens/ManageProductsScreen";
 import EditProductsScreen from "../screens/EditProductsScreen";
 import ProductDetailScreen from "../screens/ProductDetailScreen";
+import {Ionicons} from "@expo/vector-icons";
 
 
 const ShopStackNavigator = createStackNavigator({
     Shop:{
         screen: ShopHomeScreen,
         navigationOption:{
-            title: 'Shop'
+            title: 'Shop',
+            drawerIcon: drawerConfig => <Ionicons name="md-list" size={23} color={drawerConfig.tintColor} />
         },
     },
     ProductDetail: ProductDetailScreen,
@@ -28,6 +30,7 @@ const ProductsStackNavigator = createStackNavigator({
     Products:{
         screen: ProductScreen,
         navigationOptions:{
+            drawerIcon: drawerConfig => <Ionicons name="md-cart" size={23} color={drawerConfig.tintColor} />,
             title: 'Your Products'
         },
     },

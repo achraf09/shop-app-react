@@ -1,21 +1,50 @@
 import React from "react";
-import {View, Text, StyleSheet, Button} from "react-native";
+import {View, Text, StyleSheet, Button, FlatList} from "react-native";
 import {HeaderButtons, Item} from "react-navigation-header-buttons";
 import CustomHeaderButton from "../components/CustomHeaderButton";
-import ProductItem from "../components/ProductItem";
 import ProductList from "../components/ProductList";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
+import ProductItem from "../components/ProductItem";
+import * as cartActions from '../store/actions/cart';
 
 const ShopHomeScreen = props =>{
     const products = useSelector(state => state.products.availableProducts);
-    return <ProductList listData={products} navigation={props.navigation} />
+    const dispatch = useDispatch();
+    const renderGridItem = itemData => {
+        return <ProductItem
+            imageSource={itemData.item.imageUrl}
+            price={itemData.item.price}
+            onSelectProduct={()=>{
+                props.navigation.navigate({
+                    routeName: 'ProductDetail', params:{
+                        productId: itemData.item.id,
+                        productTitle: itemData.item.title
+                    }
+                });
+            }}
+            onCartAdd={()=>{
+                dispatch(cartActions.addToCart(itemData.item));
+            }}
+        />
+    };
+
+    return (
+        <View style={styles.list}>
+            <FlatList data={products} renderItem={renderGridItem} />
+        </View>
+    )
 
 }
 
 const styles = StyleSheet.create({
     screen:{
         flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    list:{
+        flex:1,
         justifyContent: 'center',
         alignItems: 'center'
     }
